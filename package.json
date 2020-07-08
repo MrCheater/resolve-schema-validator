@@ -1,0 +1,23 @@
+{
+  "name": "resolve-schema-validator",
+  "version": "0.0.1",
+  "main": "./lib/index.js",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "prettier": "prettier --write \"**/**.{ts,json,js}\"",
+    "prepare": "tsc",
+    "test": "jest --verbose"
+  },
+  "dependencies": {
+    "io-ts": "2.2.7",
+    "fp-ts": "2.7.0"
+  },
+  "devDependencies": {
+    "typescript": "3.9.6",
+    "jest": "26.1.0",
+    "ts-jest": "26.1.1",
+    "prettier": "2.0.5",
+    "@types/jest": "26.0.4",
+    "@types/node": "10.17.26"
+  }
+}
