@@ -1,13 +1,12 @@
-import {
-  GetItemArgsSchema,
-  GetItemArgsType,
-  GetItemResultSchema,
-  GetItemResultType,
-} from "./types";
-import guardian from "./utils/guardian";
+import { GetItemArgsType } from "./types";
 
-async function getItem(args: GetItemArgsType): Promise<GetItemResultType> {
-  return { value: 42 };
+async function getItem(
+  args: GetItemArgsType
+): Promise<{
+  key: string;
+  value: number;
+}> {
+  return { value: 42, key: args.key };
 }
 
-export default guardian(GetItemArgsSchema, GetItemResultSchema, getItem);
+export default getItem;

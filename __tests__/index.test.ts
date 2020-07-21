@@ -9,7 +9,7 @@ test("getItem should work correctly", async () => {
     },
   });
 
-  expect(result).toEqual({ value: 42 });
+  expect(result).toEqual({ key: "key", value: 42 });
 });
 
 test("getItem should throw error", async () => {
@@ -32,7 +32,7 @@ test("setItem should work correctly", async () => {
     },
   });
 
-  expect(result).toEqual({ ok: true });
+  expect(result).toEqual({ ok: true, key: "key", value: 42 });
 });
 
 test("setItem should throw error", async () => {

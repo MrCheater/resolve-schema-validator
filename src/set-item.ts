@@ -1,13 +1,13 @@
-import {
-  SetItemArgsSchema,
-  SetItemArgsType,
-  SetItemResultSchema,
-  SetItemResultType,
-} from "./types";
-import guardian from "./utils/guardian";
+import { SetItemArgsType } from "./types";
 
-async function setItem(args: SetItemArgsType): Promise<SetItemResultType> {
-  return { ok: true };
+async function setItem(
+  args: SetItemArgsType
+): Promise<{
+  ok: boolean;
+  key: string;
+  value: number;
+}> {
+  return { ok: true, key: args.key, value: args.value };
 }
 
-export default guardian(SetItemArgsSchema, SetItemResultSchema, setItem);
+export default setItem;

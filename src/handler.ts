@@ -1,15 +1,24 @@
-import { LambdaEvent, Method } from "./types";
+import {
+  Method,
+  SetItemArgsSchema,
+  GetItemArgsSchema,
+  EventSchema,
+} from "./types";
+import validate from "./utils/validate";
 
 import getItem from "./get-item";
 import setItem from "./set-item";
 
-function handler(event: LambdaEvent): Promise<any> {
+async function handler(lambdaEvent: unknown): Promise<any> {
+  const event = validate(EventSchema, lambdaEvent);
   switch (event.method) {
     case Method.GET_ITEM: {
-      return getItem(event.args);
+      const args = validate(GetItemArgsSchema, event.args);
+      return getItem(args);
     }
     case Method.SET_ITEM: {
-      return setItem(event.args);
+      const args = validate(SetItemArgsSchema, event.args);
+      return setItem(args);
     }
     default: {
       throw new Error("Unknown method");

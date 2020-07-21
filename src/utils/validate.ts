@@ -3,17 +3,21 @@ import * as t from "io-ts";
 import { PathReporter } from "io-ts/lib/PathReporter";
 import { isRight } from "fp-ts/lib/Either";
 
-function validate(schema: t.Type<any>, params: any, errorName?: string) {
+function validate<T extends t.Type<any>>(
+  schema: T,
+  params: any,
+  errorName?: string
+): t.TypeOf<T> {
   const validationResult = schema.decode(params);
   if (!isRight(validationResult)) {
     const messages = PathReporter.report(validationResult);
     const error = new Error(messages.join(EOL));
-    error.stack = "";
     if (errorName != null) {
       error.name = errorName;
     }
     throw error;
   }
+  return params;
 }
 
 export default validate;
